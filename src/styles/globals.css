@@ -1,33 +1,33 @@
 /* Base styles and utility overrides */
 body {
-  background-color: #F8F9FA;
+  background-color: #FAF9F6;
   color: #222222;
 }
 
 /* Luxury effects */
 .text-gold-gradient {
-  background: linear-gradient(135deg, #E9C46A 0%, #D4A373 100%);
+  background: linear-gradient(135deg, #E9C46A 0%, #C5A880 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .bg-dark-overlay {
-  background: linear-gradient(to bottom, rgba(15, 76, 92, 0.3) 0%, rgba(7, 46, 58, 0.75) 100%);
+  background: linear-gradient(to bottom, rgba(27, 59, 43, 0.4) 0%, rgba(14, 35, 25, 0.8) 100%);
 }
 
 .glass-nav {
-  background: rgba(7, 46, 58, 0.15);
+  background: rgba(14, 35, 25, 0.15);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-nav-scrolled {
-  background: rgba(7, 46, 58, 0.92);
+  background: rgba(14, 35, 25, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(233, 196, 106, 0.15);
-  box-shadow: 0 10px 30px rgba(7, 46, 58, 0.1);
+  border-bottom: 1px solid rgba(197, 168, 128, 0.15);
+  box-shadow: 0 10px 30px rgba(14, 35, 25, 0.1);
 }
 
 .glass-card {

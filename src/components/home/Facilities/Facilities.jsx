@@ -6,7 +6,7 @@ import FacilityCard from '../../cards/FacilityCard/FacilityCard';
 
 export const Facilities = () => {
   return (
-    <section id="facilities" className="py-24 bg-[#072E3A] text-white">
+    <section id="facilities" className="py-24 bg-primary-dark text-white">
       <Container>
         <SectionTitle
           title="World-Class Conveniences"

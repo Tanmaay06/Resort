@@ -4,11 +4,11 @@ import { galleryItems } from '../../data/gallery';
 import Container from '../../components/common/Container/Container';
 import SectionTitle from '../../components/common/SectionTitle/SectionTitle';
 import GalleryCard from '../../components/cards/GalleryCard/GalleryCard';
-import { RiCloseLine } from 'react-icons/ri';
+import { RiCloseLine, RiCompass3Line } from 'react-icons/ri';
 
 export const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState('all');
-  const [activeImage, setActiveImage] = useState(null);
+  const [activeItem, setActiveItem] = useState(null);
 
   const filters = ['all', 'rooms', 'dining', 'spa', 'activities', 'grounds'];
 
@@ -17,7 +17,7 @@ export const Gallery = () => {
     : galleryItems.filter(item => item.category === activeFilter);
 
   return (
-    <div className="overflow-x-hidden pt-20">
+    <div className="overflow-x-hidden pt-20 bg-bgLight">
       {/* Sub-Hero Header */}
       <section className="relative h-[45vh] flex items-center justify-center bg-primary-dark">
         <div className="absolute inset-0 w-full h-full opacity-65">
@@ -37,18 +37,18 @@ export const Gallery = () => {
       </section>
 
       {/* Gallery Explorer */}
-      <section className="py-24 bg-white min-h-screen">
+      <section className="py-24 bg-bgLight min-h-screen">
         <Container>
           {/* Tabs */}
-          <div className="flex flex-wrap justify-center gap-4 mb-16 max-w-4xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-2.5 mb-16 max-w-4xl mx-auto">
             {filters.map((f) => (
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
-                className={`font-poppins text-[10px] tracking-luxury uppercase font-medium px-5 py-2.5 border transition-all duration-500 ${
+                className={`font-inter text-[10px] tracking-luxury uppercase font-semibold px-5 py-2.5 rounded-full border transition-all duration-500 cursor-pointer ${
                   activeFilter === f
-                    ? 'bg-primary text-white border-primary'
-                    : 'bg-transparent text-charcoal text-opacity-65 border-primary border-opacity-10 hover:border-secondary hover:text-secondary'
+                    ? 'bg-primary text-white border-primary shadow-md'
+                    : 'bg-white/60 text-charcoal text-opacity-80 border-primary border-opacity-5 hover:border-secondary hover:text-secondary'
                 }`}
               >
                 {f}
@@ -56,46 +56,63 @@ export const Gallery = () => {
             ))}
           </div>
 
-          {/* Grid display with layout transitions */}
-          <motion.div layout className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            <AnimatePresence mode="popLayout">
-              {filteredItems.map((item) => (
-                <GalleryCard
-                  key={item.id}
-                  item={item}
-                  onClick={() => setActiveImage(item.image)}
-                />
-              ))}
-            </AnimatePresence>
-          </motion.div>
+          {/* Masonry Layout columns */}
+          <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4 max-w-7xl mx-auto">
+            {filteredItems.map((item) => (
+              <GalleryCard
+                key={item.id}
+                item={item}
+                onClick={() => setActiveItem(item)}
+              />
+            ))}
+          </div>
         </Container>
       </section>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox Modal with Captions */}
       <AnimatePresence>
-        {activeImage && (
+        {activeItem && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-95 z-[999] flex items-center justify-center p-4 cursor-zoom-out"
-            onClick={() => setActiveImage(null)}
+            className="fixed inset-0 bg-black/95 z-[999] flex flex-col items-center justify-center p-4 cursor-zoom-out"
+            onClick={() => setActiveItem(null)}
           >
+            {/* Close Button */}
             <button
-              onClick={() => setActiveImage(null)}
-              className="absolute top-6 right-6 text-white hover:text-secondary transition-colors focus:outline-none"
+              onClick={() => setActiveItem(null)}
+              className="absolute top-6 right-6 text-white hover:text-secondary transition-colors focus:outline-none z-50 cursor-pointer"
             >
               <RiCloseLine size={32} />
             </button>
-            <motion.img
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              src={activeImage}
-              alt="Enlarged View"
-              className="max-w-full max-h-[85vh] object-contain shadow-2xl border border-white border-opacity-5"
-            />
+
+            {/* Photo Container */}
+            <div className="relative max-w-5xl w-full flex flex-col items-center gap-4">
+              <motion.img
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                src={activeItem.image}
+                alt={activeItem.title}
+                className="max-w-full max-h-[75vh] object-contain shadow-2xl rounded-lg border border-white/5"
+              />
+
+              {/* Caption Overlay */}
+              <motion.div 
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="text-center text-white max-w-xl px-4"
+              >
+                <h3 className="font-playfair text-lg sm:text-xl text-secondary mb-1">{activeItem.title}</h3>
+                <span className="font-inter text-[9px] uppercase tracking-luxury text-white/55 font-semibold flex items-center justify-center gap-1.5">
+                  <RiCompass3Line size={12} />
+                  Category: {activeItem.category}
+                </span>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

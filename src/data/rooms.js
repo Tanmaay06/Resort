@@ -1,4 +1,4 @@
-export const rooms = [
+const defaultRooms = [
   {
     id: "crest-valley-villa",
     slug: "crest-valley-villa",
@@ -116,3 +116,10 @@ export const rooms = [
     ]
   }
 ];
+
+if (!localStorage.getItem('aaranya_rooms')) {
+  localStorage.setItem('aaranya_rooms', JSON.stringify(defaultRooms));
+}
+
+export const rooms = JSON.parse(localStorage.getItem('aaranya_rooms'));
+export default rooms;

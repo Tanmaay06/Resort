@@ -15,7 +15,7 @@ export const Newsletter = () => {
   };
 
   return (
-    <section className="py-24 bg-[#072E3A] text-white overflow-hidden relative">
+    <section className="py-24 bg-primary-dark text-white overflow-hidden relative">
       {/* Background Graphic Lines */}
       <div className="absolute inset-0 opacity-[0.03] flex items-center justify-center pointer-events-none">
         <div className="w-[600px] h-[600px] border border-white rounded-full flex items-center justify-center">
@@ -33,7 +33,7 @@ export const Newsletter = () => {
           <h2 className="text-3xl sm:text-5xl font-light font-playfair tracking-wide leading-tight text-white">
             The Aaranya Crest Chronicle
           </h2>
-          <p className="text-xs sm:text-sm text-white text-opacity-60 leading-relaxed font-poppins max-w-lg">
+          <p className="text-xs sm:text-sm text-white text-opacity-60 leading-relaxed font-inter max-w-lg">
             Subscribe to receive private announcements, seasonal packages, and curated itineraries compiled by our resort hosts. We respect your privacy and write only when inspired.
           </p>
 

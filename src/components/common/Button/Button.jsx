@@ -9,14 +9,14 @@ export const Button = ({
   className = '',
   ...props
 }) => {
-  const baseStyle = 'inline-flex items-center justify-center font-poppins text-xs tracking-luxury uppercase transition-all duration-500 py-4 px-8 border text-center select-none font-medium';
+  const baseStyle = 'inline-flex items-center justify-center font-inter text-xs tracking-luxury uppercase transition-all duration-500 py-4 px-8 border text-center select-none font-medium';
   
   const variants = {
-    primary: 'bg-primary text-white border-primary hover:bg-transparent hover:text-primary',
-    secondary: 'bg-secondary text-charcoal border-secondary hover:bg-transparent hover:text-secondary',
-    outline: 'bg-transparent text-primary border-primary hover:bg-primary hover:text-white',
-    whiteOutline: 'bg-transparent text-white border-white hover:bg-white hover:text-primary-dark hover:border-white',
-    text: 'border-transparent text-primary hover:text-accent !px-0 !py-1 border-b hover:border-accent tracking-widest',
+    primary: 'bg-primary text-white border-primary hover:bg-secondary hover:text-charcoal hover:border-secondary',
+    secondary: 'bg-secondary text-charcoal border-secondary hover:bg-primary hover:text-white hover:border-primary',
+    outline: 'bg-transparent text-primary border-primary hover:bg-secondary hover:text-charcoal hover:border-secondary',
+    whiteOutline: 'bg-transparent text-white border-white hover:bg-secondary hover:text-charcoal hover:border-secondary',
+    text: 'border-transparent text-primary hover:text-accent-dark !px-0 !py-1 border-b hover:border-accent-dark tracking-widest',
   };
 
   const finalClassName = `${baseStyle} ${variants[variant] || variants.primary} ${className}`;

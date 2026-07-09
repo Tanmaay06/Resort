@@ -22,7 +22,7 @@ export const FacilityCard = ({ facility }) => {
       />
 
       {/* Luxury overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#072E3A] via-[#072E3A]/40 to-transparent opacity-80 transition-opacity duration-700 group-hover:opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/45 to-transparent opacity-85 transition-opacity duration-700 group-hover:opacity-95" />
 
       {/* Card Content */}
       <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-between z-10">

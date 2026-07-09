@@ -21,12 +21,12 @@ export const SpaPreview = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative z-10 w-full hover-zoom-img shadow-xl aspect-[3/4] bg-primary-dark"
+              className="relative z-10 w-full shadow-xl aspect-[3/4] bg-primary-dark rounded-2xl overflow-hidden group"
             >
               <img
                 src={spaPhilosophy.images[0]}
                 alt="Spa Treatment Sanctuary"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
               />
             </motion.div>
           </div>
@@ -46,7 +46,7 @@ export const SpaPreview = () => {
               A Haven of Stillness <br />
               <span className="font-editorial text-accent italic">and Rebalance</span>
             </h2>
-            <p className="text-xs sm:text-sm text-charcoal text-opacity-70 leading-relaxed font-poppins">
+            <p className="text-xs sm:text-sm text-charcoal text-opacity-70 leading-relaxed font-inter">
               {spaPhilosophy.overview}
             </p>
             
@@ -56,14 +56,14 @@ export const SpaPreview = () => {
 
             {/* List of select therapies */}
             <div className="flex flex-col gap-3.5 mt-2">
-              <h4 className="text-[9px] uppercase tracking-luxury text-charcoal font-semibold font-poppins">
+              <h4 className="text-[9px] uppercase tracking-luxury text-charcoal font-semibold font-inter">
                 Signature Experiences
               </h4>
               <div className="flex flex-col gap-2.5">
                 {signatures.map((tr) => (
-                  <div key={tr.id} className="flex justify-between items-baseline border-b border-primary border-opacity-5 pb-1.5 text-xs sm:text-sm font-poppins">
+                  <div key={tr.id} className="flex justify-between items-baseline border-b border-primary border-opacity-5 pb-1.5 text-xs sm:text-sm font-inter">
                     <span className="text-charcoal font-medium">{tr.name}</span>
-                    <span className="text-accent italic font-editorial text-xs shrink-0 pl-4">{tr.duration} / ₹{tr.price.toLocaleString('en-IN')}</span>
+                    <span className="text-accent-dark italic font-editorial text-xs shrink-0 pl-4">{tr.duration} / ₹{tr.price.toLocaleString('en-IN')}</span>
                   </div>
                 ))}
               </div>

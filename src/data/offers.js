@@ -1,4 +1,4 @@
-export const offers = [
+const defaultOffers = [
   {
     id: "romantic-escape",
     name: "The Romantic Escape",
@@ -51,3 +51,10 @@ export const offers = [
     image: "https://images.unsplash.com/photo-1505080856163-26759885867d?auto=format&fit=crop&w=800&q=80"
   }
 ];
+
+if (!localStorage.getItem('aaranya_offers')) {
+  localStorage.setItem('aaranya_offers', JSON.stringify(defaultOffers));
+}
+
+export const offers = JSON.parse(localStorage.getItem('aaranya_offers'));
+export default offers;
