@@ -1,0 +1,67 @@
+/* Base styles and utility overrides */
+body {
+  background-color: #F8F9FA;
+  color: #222222;
+}
+
+/* Luxury effects */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #E9C46A 0%, #D4A373 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-dark-overlay {
+  background: linear-gradient(to bottom, rgba(15, 76, 92, 0.3) 0%, rgba(7, 46, 58, 0.75) 100%);
+}
+
+.glass-nav {
+  background: rgba(7, 46, 58, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-nav-scrolled {
+  background: rgba(7, 46, 58, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(233, 196, 106, 0.15);
+  box-shadow: 0 10px 30px rgba(7, 46, 58, 0.1);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gold-border-draw {
+  position: relative;
+}
+
+.gold-border-draw::before,
+.gold-border-draw::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  background: #E9C46A;
+  transition: width 0.4s ease;
+}
+
+.gold-border-draw::before {
+  top: 0;
+  left: 0;
+}
+
+.gold-border-draw::after {
+  bottom: 0;
+  right: 0;
+}
+
+.gold-border-draw:hover::before,
+.gold-border-draw:hover::after {
+  width: 100%;
+}
