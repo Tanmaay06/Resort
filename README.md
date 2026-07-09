@@ -1,16 +1,47 @@
-# React + Vite
+# Aaranya Crest Resort & Spa - Website Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Nestled amidst the lush green hills and tranquil landscapes of Lonavala, Maharashtra, **Aaranya Crest Resort & Spa** blends modern architectural elegance with the beauty of nature.
 
-Currently, two official plugins are available:
+This repository contains the premium commercial frontend application for the resort, built with React, Vite, Tailwind CSS v4, and smooth scrolling animations.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🛠️ Technology Stack
+1. **Core**: React 19 + Vite (built on JS templates)
+2. **Styling**: Tailwind CSS v4 + PostCSS with customized design tokens and fluid responsive grids
+3. **Animations**: Framer Motion, GSAP, and Lenis (for cinematic page scrolling easing)
+4. **Icons**: React Icons (Remix Icons set)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### Prerequisites
+* Node.js (version 18 or above recommended)
+* npm
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Tanmaay06/Resort.git
+   ```
+2. Navigate to the project folder:
+   ```bash
+   cd Resort
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install --legacy-peer-deps
+   ```
+
+### Running Locally
+To launch the Vite development server on `http://localhost:5173/`:
+```bash
+npm run dev
+```
+
+### Production Build
+To compile the minified React production assets inside the `dist/` directory:
+```bash
+npm run build
+```
