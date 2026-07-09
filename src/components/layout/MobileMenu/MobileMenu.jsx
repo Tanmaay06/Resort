@@ -35,7 +35,7 @@ export const MobileMenu = ({ isOpen, onClose }) => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed top-0 right-0 bottom-0 z-[100] w-full max-w-sm bg-[#072E3A] text-white px-8 py-10 flex flex-col justify-between"
+            className="fixed top-0 right-0 bottom-0 z-[100] w-full max-w-sm bg-[#0E2319] text-white px-8 py-10 flex flex-col justify-between"
           >
             {/* Top Bar */}
             <div className="flex justify-between items-center">

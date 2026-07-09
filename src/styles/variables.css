@@ -1,21 +1,22 @@
 @theme {
   --font-playfair: 'Playfair Display', serif;
-  --font-poppins: 'Poppins', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-poppins: 'Inter', sans-serif;
   --font-cormorant: 'Cormorant Garamond', serif;
 
-  --color-primary: #0F4C5C;
-  --color-primary-light: #1B6A7F;
-  --color-primary-dark: #072E3A;
+  --color-primary: #1B3B2B;
+  --color-primary-light: #2D5640;
+  --color-primary-dark: #0E2319;
 
   --color-secondary: #E9C46A;
   --color-secondary-light: #F2D38A;
   --color-secondary-dark: #C8A23C;
 
-  --color-accent: #D4A373;
-  --color-accent-light: #DFBD9B;
-  --color-accent-dark: #A6794D;
+  --color-accent: #C5A880;
+  --color-accent-light: #DFCD9B;
+  --color-accent-dark: #9E805B;
 
-  --color-bgLight: #F8F9FA;
+  --color-bgLight: #FAF9F6;
   --color-charcoal: #222222;
 
   --tracking-luxury: 0.15em;
@@ -32,12 +33,12 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F8F9FA;
+  background: #FAF9F6;
 }
 ::-webkit-scrollbar-thumb {
-  background: #0F4C5C;
+  background: #1B3B2B;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D4A373;
+  background: #C5A880;
 }

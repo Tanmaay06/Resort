@@ -31,7 +31,7 @@ export const Navbar = () => {
             : 'py-6 text-white'
         }`}
         style={{
-          background: isScrolled ? undefined : 'linear-gradient(to bottom, rgba(7, 46, 58, 0.4) 0%, transparent 100%)',
+          background: isScrolled ? undefined : 'linear-gradient(to bottom, rgba(14, 35, 25, 0.4) 0%, transparent 100%)',
           borderBottom: isScrolled ? undefined : '1px solid rgba(255,255,255,0.06)',
         }}
       >
@@ -43,7 +43,7 @@ export const Navbar = () => {
           >
             AARANYA CREST
           </Link>
-
+ 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) => {
@@ -52,14 +52,14 @@ export const Navbar = () => {
                 <Link
                   key={link.label}
                   to={link.path}
-                  className={`font-poppins text-[10px] tracking-luxury uppercase font-medium hover:text-secondary transition-colors py-1 relative ${
+                  className={`font-inter text-[10px] tracking-luxury uppercase font-medium hover:text-secondary transition-colors py-1 relative group ${
                     isActive ? 'text-secondary font-semibold' : 'text-white text-opacity-80'
                   }`}
                 >
                   {link.label}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-secondary" />
-                  )}
+                  <span className={`absolute bottom-0 left-0 h-[1.5px] bg-secondary transition-all duration-300 ${
+                    isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`} />
                 </Link>
               );
             })}

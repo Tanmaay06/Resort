@@ -114,7 +114,7 @@ export const Booking = () => {
   return (
     <div className="overflow-x-hidden pt-20 bg-bgLight min-h-screen pb-24">
       {/* sub-hero header */}
-      <section className="bg-[#072E3A] py-12 text-white border-b border-[#E9C46A] border-opacity-10 text-center">
+      <section className="bg-[#0E2319] py-12 text-white border-b border-secondary border-opacity-15 text-center">
         <Container>
           <span className="editorial-sub tracking-luxury uppercase text-[10px] font-medium block mb-1">Stay Customizer</span>
           <h1 className="text-xl sm:text-2xl font-light font-playfair tracking-luxury uppercase">Reserve Your Sanctuary</h1>

@@ -1,4 +1,4 @@
-export const dining = [
+const defaultDining = [
   {
     id: "the-cliffside-grill",
     name: "The Cliffside Grill",
@@ -31,7 +31,7 @@ export const dining = [
     signatures: [
       "Smoked Heirloom Tomato Tartare",
       "Saffron Infused Hand-Cut Tagliolini",
-      "Slow-Roasted Duck Breast with Wild Plum Reduction",
+      "Slow-Roasted Duck Breast with Wild Honey Emulsion",
       "Botanical Infused Mocktails & Organic Wines"
     ],
     features: [
@@ -63,3 +63,10 @@ export const dining = [
     ]
   }
 ];
+
+if (!localStorage.getItem('aaranya_dining')) {
+  localStorage.setItem('aaranya_dining', JSON.stringify(defaultDining));
+}
+
+export const dining = JSON.parse(localStorage.getItem('aaranya_dining'));
+export default dining;

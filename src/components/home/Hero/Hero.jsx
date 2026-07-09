@@ -21,7 +21,7 @@ export const Hero = () => {
         className="absolute inset-0 w-full h-full"
       >
         <img
-          src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80"
+          src="/images/landing-hero.jpg"
           alt="Aaranya Crest Resort & Spa Grounds"
           className="w-full h-full object-cover"
         />
@@ -36,7 +36,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 0.8, y: 0 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="text-xs tracking-luxury font-poppins text-secondary uppercase font-semibold"
+          className="text-xs tracking-luxury font-inter text-secondary uppercase font-semibold"
         >
           Western Ghats, Lonavala
         </motion.span>
@@ -55,7 +55,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 0.75, y: 0 }}
           transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-xs sm:text-sm font-light text-white text-opacity-80 max-w-xl font-poppins leading-relaxed"
+          className="text-xs sm:text-sm font-light text-white text-opacity-80 max-w-xl font-inter leading-relaxed"
         >
           Escape to a mountain sanctuary designed for total rejuvenation, where architectural purity meets Lonavala's raw forest beauty.
         </motion.p>
@@ -67,10 +67,10 @@ export const Hero = () => {
           className="mt-3 flex gap-4"
         >
           <Button to="/rooms" variant="secondary">
-            Explore Suites
+            Explore Stays
           </Button>
           <Button to="/booking" variant="whiteOutline">
-            Book Stay
+            Book Your Escape
           </Button>
         </motion.div>
       </div>
@@ -83,7 +83,7 @@ export const Hero = () => {
         onClick={handleScrollDown}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 text-white flex flex-col items-center gap-2 cursor-pointer focus:outline-none hover:text-secondary hover:opacity-100 transition-colors"
       >
-        <span className="text-[9px] uppercase tracking-luxury font-poppins font-medium">Scroll Down</span>
+        <span className="text-[9px] uppercase tracking-luxury font-inter font-medium">Scroll Down</span>
         <RiArrowDownLine size={16} />
       </motion.button>
     </section>

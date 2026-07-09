@@ -22,7 +22,7 @@ export const OfferCard = ({ offer }) => {
           className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
         />
         <div className="absolute top-4 left-4">
-          <Badge className="bg-[#072E3A] text-white bg-opacity-90">{badge}</Badge>
+          <Badge className="bg-primary-dark text-white bg-opacity-95">{badge}</Badge>
         </div>
       </div>
 

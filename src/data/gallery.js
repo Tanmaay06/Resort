@@ -1,4 +1,4 @@
-export const galleryItems = [
+const defaultGallery = [
   {
     id: 1,
     title: "Crest Valley Villa Sunset View",
@@ -72,3 +72,10 @@ export const galleryItems = [
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80"
   }
 ];
+
+if (!localStorage.getItem('aaranya_gallery')) {
+  localStorage.setItem('aaranya_gallery', JSON.stringify(defaultGallery));
+}
+
+export const galleryItems = JSON.parse(localStorage.getItem('aaranya_gallery'));
+export default galleryItems;

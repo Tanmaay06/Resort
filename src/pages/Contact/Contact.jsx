@@ -199,14 +199,14 @@ export const Contact = () => {
       {/* 4. Elegant visual map placeholder */}
       <section className="h-[40vh] w-full bg-primary bg-opacity-5 relative overflow-hidden border-t border-primary border-opacity-5">
         <img
-          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80"
-          alt="Archipelago map visual"
-          className="w-full h-full object-cover opacity-30 grayscale"
+          src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1920&q=80"
+          alt="Lonavala map visual"
+          className="w-full h-full object-cover opacity-35 grayscale"
         />
-        <div className="absolute inset-0 bg-[#072E3A] bg-opacity-25 flex items-center justify-center text-center">
-          <div className="p-8 bg-white border border-primary border-opacity-5 shadow-2xl max-w-sm text-charcoal">
+        <div className="absolute inset-0 bg-[#0E2319] bg-opacity-30 flex items-center justify-center text-center">
+          <div className="p-8 bg-white border border-primary border-opacity-5 shadow-2xl max-w-sm text-charcoal rounded-xl">
             <h3 className="font-playfair text-lg font-light tracking-wide text-primary">Interactive Map</h3>
-            <p className="text-[11px] font-poppins text-charcoal text-opacity-65 leading-relaxed mt-2">
+            <p className="text-[11px] font-inter text-charcoal text-opacity-65 leading-relaxed mt-2">
               18.7548° N &nbsp;•&nbsp; 73.4068° E <br />
               Nestled near Bhushi Valley Road in Lonavala, Maharashtra, India.
             </p>

@@ -1,4 +1,4 @@
-export const activities = [
+const defaultActivities = [
   {
     id: "monsoon-waterfall",
     name: "Monsoon Waterfall Trail",
@@ -96,3 +96,10 @@ export const activities = [
     ]
   }
 ];
+
+if (!localStorage.getItem('aaranya_activities')) {
+  localStorage.setItem('aaranya_activities', JSON.stringify(defaultActivities));
+}
+
+export const activities = JSON.parse(localStorage.getItem('aaranya_activities'));
+export default activities;

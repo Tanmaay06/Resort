@@ -1,4 +1,4 @@
-export const spaTreatments = [
+const defaultSpaTreatments = [
   {
     id: "aaranya-signature-massage",
     name: "Aaranya Signature Massage",
@@ -37,7 +37,7 @@ export const spaTreatments = [
   }
 ];
 
-export const spaPackages = [
+const defaultSpaPackages = [
   {
     id: "forest-renewal-package",
     name: "Forest Renewal Sanctuary",
@@ -56,7 +56,7 @@ export const spaPackages = [
   }
 ];
 
-export const spaPhilosophy = {
+const defaultSpaPhilosophy = {
   quote: "Stillness of mind is the source of health.",
   overview: "Aaranya Crest Wellness is built upon three pillars: mountain air, herbal cures, and sound resonance. Nestled on a quiet forest ridge in Lonavala, the spa features open-air suites, a hydrotherapy steam circuit, and relaxation gardens overlooking the green valley.",
   images: [
@@ -64,3 +64,17 @@ export const spaPhilosophy = {
     "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1200&q=80"
   ]
 };
+
+if (!localStorage.getItem('aaranya_spa_treatments')) {
+  localStorage.setItem('aaranya_spa_treatments', JSON.stringify(defaultSpaTreatments));
+}
+if (!localStorage.getItem('aaranya_spa_packages')) {
+  localStorage.setItem('aaranya_spa_packages', JSON.stringify(defaultSpaPackages));
+}
+if (!localStorage.getItem('aaranya_spa_philosophy')) {
+  localStorage.setItem('aaranya_spa_philosophy', JSON.stringify(defaultSpaPhilosophy));
+}
+
+export const spaTreatments = JSON.parse(localStorage.getItem('aaranya_spa_treatments'));
+export const spaPackages = JSON.parse(localStorage.getItem('aaranya_spa_packages'));
+export const spaPhilosophy = JSON.parse(localStorage.getItem('aaranya_spa_philosophy'));

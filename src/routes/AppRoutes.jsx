@@ -15,6 +15,7 @@ import Offers from '../pages/Offers/Offers';
 import Booking from '../pages/Booking/Booking';
 import Contact from '../pages/Contact/Contact';
 import FAQ from '../pages/FAQ/FAQ';
+import Admin from '../pages/Admin/Admin';
 import NotFound from '../pages/NotFound/NotFound';
 
 export const AppRoutes = () => {
@@ -33,6 +34,7 @@ export const AppRoutes = () => {
         <Route path="booking" element={<Booking />} />
         <Route path="contact" element={<Contact />} />
         <Route path="faq" element={<FAQ />} />
+        <Route path="admin" element={<Admin />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
