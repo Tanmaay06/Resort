@@ -1,0 +1,73 @@
+/* Custom animation utility classes */
+.hover-zoom-img {
+  overflow: hidden;
+  position: relative;
+}
+
+.hover-zoom-img img {
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-zoom-img:hover img {
+  transform: scale(1.08);
+}
+
+.reveal-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.reveal-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0F4C5C;
+  transform: scaleX(1);
+  transform-origin: right;
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-overlay.active::after {
+  transform: scaleX(0);
+}
+
+/* Lenis smooth scrolling support */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Swiper styling overrides */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #E9C46A !important;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  transform: scale(1.1);
+}
+
+.swiper-pagination-bullet-active {
+  background: #E9C46A !important;
+}

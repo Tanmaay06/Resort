@@ -1,0 +1,41 @@
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+body {
+  font-family: var(--font-poppins);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.font-editorial {
+  font-family: var(--font-cormorant);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.tracking-luxury {
+  letter-spacing: 0.15em;
+}
+
+.tracking-ultra {
+  letter-spacing: 0.25em;
+}
+
+/* Specific editorial typography treatments */
+.editorial-title {
+  font-family: var(--font-playfair);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  font-weight: 300;
+}
+
+.editorial-sub {
+  font-family: var(--font-cormorant);
+  font-size: clamp(1.25rem, 2vw, 1.875rem);
+  font-style: italic;
+  color: #B38456;
+}
