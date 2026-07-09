@@ -97,9 +97,21 @@ const defaultActivities = [
   }
 ];
 
-if (!localStorage.getItem('aaranya_activities')) {
-  localStorage.setItem('aaranya_activities', JSON.stringify(defaultActivities));
-}
+const getStoredActivities = () => {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const stored = localStorage.getItem('aaranya_activities');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+      localStorage.setItem('aaranya_activities', JSON.stringify(defaultActivities));
+    }
+  } catch (e) {
+    console.error("Error reading aaranya_activities from localStorage", e);
+  }
+  return defaultActivities;
+};
 
-export const activities = JSON.parse(localStorage.getItem('aaranya_activities'));
+export const activities = getStoredActivities();
 export default activities;

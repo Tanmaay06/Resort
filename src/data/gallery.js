@@ -73,9 +73,21 @@ const defaultGallery = [
   }
 ];
 
-if (!localStorage.getItem('aaranya_gallery')) {
-  localStorage.setItem('aaranya_gallery', JSON.stringify(defaultGallery));
-}
+const getStoredGallery = () => {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const stored = localStorage.getItem('aaranya_gallery');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+      localStorage.setItem('aaranya_gallery', JSON.stringify(defaultGallery));
+    }
+  } catch (e) {
+    console.error("Error reading aaranya_gallery from localStorage", e);
+  }
+  return defaultGallery;
+};
 
-export const galleryItems = JSON.parse(localStorage.getItem('aaranya_gallery'));
+export const galleryItems = getStoredGallery();
 export default galleryItems;

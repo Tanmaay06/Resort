@@ -117,9 +117,23 @@ const defaultRooms = [
   }
 ];
 
-if (!localStorage.getItem('aaranya_rooms')) {
-  localStorage.setItem('aaranya_rooms', JSON.stringify(defaultRooms));
-}
+const getStoredRooms = () => {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const stored = localStorage.getItem('aaranya_rooms');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      }
+      localStorage.setItem('aaranya_rooms', JSON.stringify(defaultRooms));
+    }
+  } catch (e) {
+    console.error("Error reading aaranya_rooms from localStorage", e);
+  }
+  return defaultRooms;
+};
 
-export const rooms = JSON.parse(localStorage.getItem('aaranya_rooms'));
+export const rooms = getStoredRooms();
 export default rooms;
