@@ -52,9 +52,21 @@ const defaultOffers = [
   }
 ];
 
-if (!localStorage.getItem('aaranya_offers')) {
-  localStorage.setItem('aaranya_offers', JSON.stringify(defaultOffers));
-}
+const getStoredOffers = () => {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const stored = localStorage.getItem('aaranya_offers');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+      localStorage.setItem('aaranya_offers', JSON.stringify(defaultOffers));
+    }
+  } catch (e) {
+    console.error("Error reading aaranya_offers from localStorage", e);
+  }
+  return defaultOffers;
+};
 
-export const offers = JSON.parse(localStorage.getItem('aaranya_offers'));
+export const offers = getStoredOffers();
 export default offers;

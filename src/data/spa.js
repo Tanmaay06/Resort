@@ -65,16 +65,54 @@ const defaultSpaPhilosophy = {
   ]
 };
 
-if (!localStorage.getItem('aaranya_spa_treatments')) {
-  localStorage.setItem('aaranya_spa_treatments', JSON.stringify(defaultSpaTreatments));
-}
-if (!localStorage.getItem('aaranya_spa_packages')) {
-  localStorage.setItem('aaranya_spa_packages', JSON.stringify(defaultSpaPackages));
-}
-if (!localStorage.getItem('aaranya_spa_philosophy')) {
-  localStorage.setItem('aaranya_spa_philosophy', JSON.stringify(defaultSpaPhilosophy));
-}
+const getStoredSpaTreatments = () => {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const stored = localStorage.getItem('aaranya_spa_treatments');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+      localStorage.setItem('aaranya_spa_treatments', JSON.stringify(defaultSpaTreatments));
+    }
+  } catch (e) {
+    console.error("Error reading aaranya_spa_treatments from localStorage", e);
+  }
+  return defaultSpaTreatments;
+};
 
-export const spaTreatments = JSON.parse(localStorage.getItem('aaranya_spa_treatments'));
-export const spaPackages = JSON.parse(localStorage.getItem('aaranya_spa_packages'));
-export const spaPhilosophy = JSON.parse(localStorage.getItem('aaranya_spa_philosophy'));
+const getStoredSpaPackages = () => {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const stored = localStorage.getItem('aaranya_spa_packages');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+      localStorage.setItem('aaranya_spa_packages', JSON.stringify(defaultSpaPackages));
+    }
+  } catch (e) {
+    console.error("Error reading aaranya_spa_packages from localStorage", e);
+  }
+  return defaultSpaPackages;
+};
+
+const getStoredSpaPhilosophy = () => {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const stored = localStorage.getItem('aaranya_spa_philosophy');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed && parsed.images && parsed.images.length > 0) return parsed;
+      }
+      localStorage.setItem('aaranya_spa_philosophy', JSON.stringify(defaultSpaPhilosophy));
+    }
+  } catch (e) {
+    console.error("Error reading aaranya_spa_philosophy from localStorage", e);
+  }
+  return defaultSpaPhilosophy;
+};
+
+export const spaTreatments = getStoredSpaTreatments();
+export const spaPackages = getStoredSpaPackages();
+export const spaPhilosophy = getStoredSpaPhilosophy();
