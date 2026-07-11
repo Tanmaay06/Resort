@@ -16,7 +16,9 @@ import {
   RiArrowLeftLine,
   RiCheckLine,
   RiCloseLine,
-  RiMapPinLine
+  RiMapPinLine,
+  RiDownloadLine,
+  RiUploadCloudLine
 } from 'react-icons/ri';
 import { landmarks } from '../../data/landmarks';
 
@@ -58,8 +60,179 @@ export const Admin = () => {
     { id: 'dining', label: 'Dining Outlets', icon: <RiRestaurantLine /> },
     { id: 'spa', label: 'Spa Treatments', icon: <RiLeafLine /> },
     { id: 'landmarks', label: 'Nearby Attractions', icon: <RiMapPinLine /> },
-    { id: 'gallery', label: 'Gallery Media', icon: <RiImageLine /> }
+    { id: 'gallery', label: 'Gallery Media', icon: <RiImageLine /> },
+    { id: 'deployment', label: 'Export / Deploy', icon: <RiUploadCloudLine /> }
   ];
+
+  const generateExportCode = (type) => {
+    let dataVar = '';
+    let defaultVarName = '';
+    let storageKey = '';
+    let exportVarName = '';
+
+    if (type === 'rooms') {
+      dataVar = JSON.stringify(roomsData, null, 2);
+      defaultVarName = 'defaultRooms';
+      storageKey = 'aaranya_rooms';
+      exportVarName = 'rooms';
+    } else if (type === 'activities') {
+      dataVar = JSON.stringify(activitiesData, null, 2);
+      defaultVarName = 'defaultActivities';
+      storageKey = 'aaranya_activities';
+      exportVarName = 'activities';
+    } else if (type === 'offers') {
+      dataVar = JSON.stringify(offersData, null, 2);
+      defaultVarName = 'defaultOffers';
+      storageKey = 'aaranya_offers';
+      exportVarName = 'offers';
+    } else if (type === 'dining') {
+      dataVar = JSON.stringify(diningData, null, 2);
+      defaultVarName = 'defaultDining';
+      storageKey = 'aaranya_dining';
+      exportVarName = 'dining';
+    } else if (type === 'spa') {
+      dataVar = JSON.stringify(spaData, null, 2);
+      defaultVarName = 'defaultSpaTreatments';
+      storageKey = 'aaranya_spa_treatments';
+      exportVarName = 'spaTreatments';
+    } else if (type === 'landmarks') {
+      dataVar = JSON.stringify(landmarksData, null, 2);
+      defaultVarName = 'defaultLandmarks';
+      storageKey = 'aaranya_landmarks';
+      exportVarName = 'landmarks';
+    } else if (type === 'gallery') {
+      dataVar = JSON.stringify(galleryData, null, 2);
+      defaultVarName = 'defaultGallery';
+      storageKey = 'aaranya_gallery';
+      exportVarName = 'gallery';
+    }
+
+    if (type === 'spa') {
+      return `// Aaranya Crest Spa Data
+// Generated from Admin Console for Vercel Deployment
+
+export const spaPhilosophy = {
+  overview: "Located high in Lonavala's hills, the Spa at Aaranya Crest is a sanctuary of holistic wellness. We blend ancient Indian healing systems—including Ayurveda and Himalayan sound therapies—with modern organic skincare treatments. Each therapy is designed to rebalance the body's natural energetic fields (prana) and release emotional and physical blockages.",
+  quote: "Quieten the mind, restore the body, realign the spirit.",
+  images: [
+    "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80",
+    "/images/spa-hero.jpg"
+  ]
+};
+
+const defaultSpaTreatments = ${dataVar};
+
+const defaultSpaPackages = [
+  {
+    id: "forest-renewal-package",
+    name: "Forest Renewal Sanctuary",
+    duration: "3.5 Hours",
+    price: 15000,
+    description: "A complete holistic journey designed to detoxify the physical body and quiet the mind. Includes a personalized herbal steam bath, a custom deep tissue massage, a natural forest detox facial, and a concluding sound therapy session.",
+    treatments: [
+      "Signature Herbal Steam & Forest Scrub",
+      "90-minute Deep Forest Aromatherapy Massage",
+      "Botanical Radiance Facial & Scalp treatment",
+      "Singing Bowls Sound Meditation & Herbal Tea Service"
+    ]
+  },
+  {
+    id: "prana-mindfulness-retreat",
+    name: "Prana Mindfulness Retreat",
+    duration: "3 Hours",
+    price: 12000,
+    description: "Align your inner energies with a restorative program focusing on meditation, breathwork, and deep somatic release. Features custom breath coaching, a warm sesame oil flow (Abhyanga), and a relaxing sound bath session.",
+    treatments: [
+      "Guided Pranayama & Mindfulness session (45 min)",
+      "75-minute Warm Sesame Abhyanga Massage",
+      "45-minute Himalayan Sound Bath & Energy Balancing",
+      "Custom herbal tonic & meditation coaching materials"
+    ]
+  }
+];
+
+const getStoredSpaTreatments = () => {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const stored = localStorage.getItem('aaranya_spa_treatments');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+      localStorage.setItem('aaranya_spa_treatments', JSON.stringify(defaultSpaTreatments));
+    }
+  } catch (e) {
+    console.error("Error reading aaranya_spa_treatments", e);
+  }
+  return defaultSpaTreatments;
+};
+
+export const spaTreatments = getStoredSpaTreatments();
+export const spaPackages = defaultSpaPackages;
+`;
+    }
+
+    if (type === 'landmarks') {
+      return `const defaultLandmarks = ${dataVar};
+
+const getStoredLandmarks = () => {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const stored = localStorage.getItem('aaranya_landmarks');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+      localStorage.setItem('aaranya_landmarks', JSON.stringify(defaultLandmarks));
+    }
+  } catch (e) {
+    console.error("Error reading aaranya_landmarks from localStorage", e);
+  }
+  return defaultLandmarks;
+};
+
+export const landmarks = getStoredLandmarks();
+export default landmarks;
+`;
+    }
+
+    const functionCapitalized = exportVarName.charAt(0).toUpperCase() + exportVarName.slice(1);
+    
+    return `const \${defaultVarName} = \${dataVar};
+
+const getStored\${functionCapitalized} = () => {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const stored = localStorage.getItem('\${storageKey}');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+      localStorage.setItem('\${storageKey}', JSON.stringify(\${defaultVarName}));
+    }
+  } catch (e) {
+    console.error("Error reading \${storageKey} from localStorage", e);
+  }
+  return \${defaultVarName};
+};
+
+export const \${exportVarName} = getStored\${functionCapitalized}();
+export default \${exportVarName};
+`;
+  };
+
+  const downloadJsFile = (type, content) => {
+    let filename = `${type}.js`;
+    const blob = new Blob([content], { type: 'text/javascript;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", filename);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -339,21 +512,30 @@ export const Admin = () => {
         {/* Dynamic Items Panel */}
         {!editItem ? (
           <div className="bg-white rounded-2xl border border-primary border-opacity-5 p-6 md:p-8 shadow-sm">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-              <div>
-                <h2 className="text-xl font-playfair font-medium text-primary">
-                  {tabs.find(t => t.id === activeTab)?.label} List
-                </h2>
-                <p className="text-xs text-charcoal/50 mt-1">Add, edit, remove details and upload photos directly from your computer.</p>
+            {activeTab !== 'deployment' ? (
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                <div>
+                  <h2 className="text-xl font-playfair font-medium text-primary">
+                    {tabs.find(t => t.id === activeTab)?.label} List
+                  </h2>
+                  <p className="text-xs text-charcoal/50 mt-1">Add, edit, remove details and upload photos directly from your computer.</p>
+                </div>
+                <button
+                  onClick={handleAddClick}
+                  className="flex items-center gap-1.5 bg-secondary text-charcoal px-5 py-2.5 rounded-xl text-xs uppercase tracking-luxury font-semibold hover:bg-primary hover:text-white transition-all duration-300 shadow-sm cursor-pointer"
+                >
+                  <RiAddLine size={16} />
+                  <span>Add New</span>
+                </button>
               </div>
-              <button
-                onClick={handleAddClick}
-                className="flex items-center gap-1.5 bg-secondary text-charcoal px-5 py-2.5 rounded-xl text-xs uppercase tracking-luxury font-semibold hover:bg-primary hover:text-white transition-all duration-300 shadow-sm cursor-pointer"
-              >
-                <RiAddLine size={16} />
-                <span>Add New</span>
-              </button>
-            </div>
+            ) : (
+              <div className="mb-8">
+                <h2 className="text-xl font-playfair font-medium text-primary">
+                  Consolidated Configuration Export
+                </h2>
+                <p className="text-xs text-charcoal/50 mt-1">Sync your local browser adjustments with code files for GitHub & Vercel deployment.</p>
+              </div>
+            )}
 
             {/* List Table/Grid */}
             <div className="grid grid-cols-1 gap-4">
@@ -473,6 +655,62 @@ export const Admin = () => {
                 </div>
               ))}
             </div>
+
+            {activeTab === 'deployment' && (
+              <div className="flex flex-col gap-8">
+                <div className="p-5 bg-primary/5 rounded-2xl border border-primary/5 flex flex-col gap-3">
+                  <span className="text-[10px] uppercase font-bold tracking-luxury text-secondary">Vercel Deployment Synchronization</span>
+                  <h3 className="text-base font-light font-playfair text-primary">How to publish your changes to the live website</h3>
+                  <p className="text-xs text-charcoal/70 leading-relaxed font-poppins">
+                    Because Aaranya Crest is a secure static application, any changes or local photos you edit/upload in this admin console are stored directly in your browser's private storage (Local Storage).
+                    <br /><br />
+                    To sync these updates and photos to the live <strong>https://aaranya-resort.vercel.app</strong> site, select a module below to download its updated code file, replace the corresponding file in the codebase (in <strong>src/data/</strong>), and push the changes to GitHub!
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  {[
+                    { id: 'rooms', name: 'Rooms & Suites', file: 'src/data/rooms.js' },
+                    { id: 'activities', name: 'Activities', file: 'src/data/activities.js' },
+                    { id: 'dining', name: 'Dining Outlets', file: 'src/data/dining.js' },
+                    { id: 'spa', name: 'Spa Treatments', file: 'src/data/spa.js' },
+                    { id: 'offers', name: 'Exclusive Offers', file: 'src/data/offers.js' },
+                    { id: 'landmarks', name: 'Nearby Attractions', file: 'src/data/landmarks.js' },
+                    { id: 'gallery', name: 'Gallery Media', file: 'src/data/gallery.js' }
+                  ].map((item) => {
+                    const codeContent = generateExportCode(item.id);
+                    return (
+                      <div key={item.id} className="p-5 border border-primary/10 rounded-xl bg-white flex flex-col gap-4 shadow-xs">
+                        <div>
+                          <h4 className="font-playfair text-charcoal font-medium text-sm">{item.name}</h4>
+                          <span className="text-[9px] font-mono text-accent-dark block mt-0.5">{item.file}</span>
+                        </div>
+                        <div className="flex gap-2.5 mt-auto">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              navigator.clipboard.writeText(codeContent);
+                              alert(`${item.name} code copied to clipboard! Open ${item.file} and paste it.`);
+                            }}
+                            className="flex-grow bg-primary text-white text-[10px] uppercase font-bold py-2.5 px-3 rounded-lg hover:bg-secondary hover:text-charcoal transition-all duration-300 flex items-center justify-center gap-1 cursor-pointer"
+                          >
+                            Copy JS Code
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => downloadJsFile(item.id, codeContent)}
+                            className="bg-bgLight text-charcoal text-[10px] uppercase font-bold py-2.5 px-3 border border-primary/10 rounded-lg hover:bg-secondary hover:border-secondary transition-all duration-300 flex items-center justify-center gap-1 cursor-pointer"
+                            title="Download file"
+                          >
+                            <RiDownloadLine size={14} /> Download File
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
         ) : (
           /* Detailed Form Editor Block */
