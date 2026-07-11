@@ -11,6 +11,7 @@ export const MobileMenu = ({ isOpen, onClose }) => {
     { label: 'Dining', path: '/dining' },
     { label: 'Spa & Wellness', path: '/spa' },
     { label: 'Activities', path: '/activities' },
+    { label: 'Gallery', path: '/gallery' },
     { label: 'Exclusive Offers', path: '/offers' },
     { label: 'FAQ', path: '/faq' },
     { label: 'Contact', path: '/contact' },
