@@ -18,6 +18,7 @@ export const Navbar = () => {
     { label: 'Dining', path: '/dining' },
     { label: 'Spa', path: '/spa' },
     { label: 'Activities', path: '/activities' },
+    { label: 'Gallery', path: '/gallery' },
     { label: 'Offers', path: '/offers' },
     { label: 'Contact', path: '/contact' },
   ];

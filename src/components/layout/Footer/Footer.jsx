@@ -20,6 +20,7 @@ export const Footer = () => {
     { label: 'Fine Gastronomy', path: '/dining' },
     { label: 'Spa & Wellness', path: '/spa' },
     { label: 'Activities Roster', path: '/activities' },
+    { label: 'Visual Gallery', path: '/gallery' },
     { label: 'Exclusive Offers', path: '/offers' }
   ];
 
