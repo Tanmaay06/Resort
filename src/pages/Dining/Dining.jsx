@@ -11,7 +11,7 @@ export const Dining = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    restaurant: 'the-ocean-grill',
+    restaurant: 'the-cliffside-grill',
     date: '',
     time: '19:30',
     guests: '2',
@@ -43,7 +43,7 @@ export const Dining = () => {
         <div className="relative z-10 text-center text-white px-6">
           <span className="editorial-sub tracking-luxury uppercase text-xs md:text-sm font-medium mb-3 block">Gastronomy</span>
           <h1 className="text-3xl sm:text-5xl font-light font-playfair tracking-wide leading-tight">
-            Culinary Experiences
+            Luxurious Dining
           </h1>
         </div>
       </section>
@@ -167,8 +167,8 @@ export const Dining = () => {
                     onChange={handleInputChange}
                     className="bg-bgLight border border-primary border-opacity-5 p-2.5 text-xs font-poppins focus:outline-none focus:border-secondary cursor-pointer font-medium"
                   >
-                    <option value="the-ocean-grill">The Ocean Grill</option>
-                    <option value="luna-sol">Luna & Sol</option>
+                    <option value="the-cliffside-grill">The Cliffside Grill</option>
+                    <option value="saarang">Saarang</option>
                     <option value="the-sunset-lounge">The Sunset Lounge</option>
                   </select>
                 </div>

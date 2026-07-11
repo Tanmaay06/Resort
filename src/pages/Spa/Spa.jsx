@@ -41,7 +41,7 @@ export const Spa = () => {
       <section className="relative h-[45vh] flex items-center justify-center bg-primary-dark">
         <div className="absolute inset-0 w-full h-full opacity-65">
           <img
-            src={spaPhilosophy.images[1]}
+            src="/images/spa-hero.jpg"
             alt="Spa Treatment Room"
             className="w-full h-full object-cover"
           />

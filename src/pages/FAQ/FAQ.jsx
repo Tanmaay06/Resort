@@ -15,7 +15,7 @@ export const FAQ = () => {
         },
         {
           q: "What is included in the nightly suite rate?",
-          a: "All room rates include luxury return speedboat transfers from the international airport jetty, daily organic farm-to-table breakfast served in-villa or at Luna & Sol, dedicated 24-hour Villa Host (butler) services, daily wellness setup, and complimentary non-motorized water sports (paddleboards, kayaking)."
+          a: "All room rates include luxury return speedboat transfers from the international airport jetty, daily organic farm-to-table breakfast served in-villa or at Saarang, dedicated 24-hour Villa Host (butler) services, daily wellness setup, and complimentary non-motorized water sports (paddleboards, kayaking)."
         },
         {
           q: "Are flights included in the booking rate?",
@@ -36,7 +36,7 @@ export const FAQ = () => {
         },
         {
           q: "Is there a guest dress code at the resort?",
-          a: "We embrace elegant resort comfort. The daytime dress code is light resort casual. For dinner at The Cliffside Grill and Luna & Sol, we request sophisticated smart-casual attire (collared shirts, elegant dresses, closed footwear)."
+          a: "We embrace elegant resort comfort. The daytime dress code is light resort casual. For dinner at The Cliffside Grill and Saarang, we request sophisticated smart-casual attire (collared shirts, elegant dresses, closed footwear)."
         }
       ]
     },

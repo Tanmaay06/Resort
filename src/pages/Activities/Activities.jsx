@@ -33,7 +33,7 @@ export const Activities = () => {
       <section className="relative h-[45vh] flex items-center justify-center bg-primary-dark">
         <div className="absolute inset-0 w-full h-full opacity-65">
           <img
-            src="https://images.unsplash.com/photo-1505080856163-26759885867d?auto=format&fit=crop&w=1920&q=80"
+            src="/images/activity-hero.png"
             alt="Activities Banner"
             className="w-full h-full object-cover"
           />

@@ -15,8 +15,10 @@ import {
   RiSaveLine,
   RiArrowLeftLine,
   RiCheckLine,
-  RiCloseLine
+  RiCloseLine,
+  RiMapPinLine
 } from 'react-icons/ri';
+import { landmarks } from '../../data/landmarks';
 
 export const Admin = () => {
   // Authorization Gate
@@ -39,6 +41,7 @@ export const Admin = () => {
   const getDining = () => JSON.parse(localStorage.getItem('aaranya_dining')) || [];
   const getGallery = () => JSON.parse(localStorage.getItem('aaranya_gallery')) || [];
   const getSpa = () => JSON.parse(localStorage.getItem('aaranya_spa_treatments')) || [];
+  const getLandmarks = () => JSON.parse(localStorage.getItem('aaranya_landmarks')) || [];
 
   const [roomsData, setRoomsData] = useState(getRooms());
   const [activitiesData, setActivitiesData] = useState(getActivities());
@@ -46,6 +49,7 @@ export const Admin = () => {
   const [diningData, setDiningData] = useState(getDining());
   const [galleryData, setGalleryData] = useState(getGallery());
   const [spaData, setSpaData] = useState(getSpa());
+  const [landmarksData, setLandmarksData] = useState(getLandmarks());
 
   const tabs = [
     { id: 'rooms', label: 'Rooms & Suites', icon: <RiHotelLine /> },
@@ -53,6 +57,7 @@ export const Admin = () => {
     { id: 'offers', label: 'Exclusive Offers', icon: <RiCoinsLine /> },
     { id: 'dining', label: 'Dining Outlets', icon: <RiRestaurantLine /> },
     { id: 'spa', label: 'Spa Treatments', icon: <RiLeafLine /> },
+    { id: 'landmarks', label: 'Nearby Attractions', icon: <RiMapPinLine /> },
     { id: 'gallery', label: 'Gallery Media', icon: <RiImageLine /> }
   ];
 
@@ -150,6 +155,8 @@ export const Admin = () => {
       newItem = { id: `dining-${Date.now()}`, name: '', tagline: '', cuisine: '', hours: '', description: '', image: '', signatures: [''], features: [''] };
     } else if (activeTab === 'spa') {
       newItem = { id: `spa-${Date.now()}`, name: '', category: 'Massages', duration: '', price: 5000, description: '', benefits: [''] };
+    } else if (activeTab === 'landmarks') {
+      newItem = { id: `land-${Date.now()}`, name: '', distance: '', description: '', image: '', images: [''] };
     } else if (activeTab === 'gallery') {
       newItem = { id: Date.now(), title: '', category: 'rooms', image: '' };
     }
@@ -175,6 +182,9 @@ export const Admin = () => {
     } else if (activeTab === 'spa') {
       const updated = spaData.filter(s => s.id !== id);
       saveToStorage('aaranya_spa_treatments', updated, setSpaData);
+    } else if (activeTab === 'landmarks') {
+      const updated = landmarksData.filter(l => l.id !== id);
+      saveToStorage('aaranya_landmarks', updated, setLandmarksData);
     } else if (activeTab === 'gallery') {
       const updated = galleryData.filter(g => g.id !== id);
       saveToStorage('aaranya_gallery', updated, setGalleryData);
@@ -212,6 +222,11 @@ export const Admin = () => {
         ? [...spaData, editItem]
         : spaData.map(s => s.id === editItem.id ? editItem : s);
       saveToStorage('aaranya_spa_treatments', updated, setSpaData);
+    } else if (activeTab === 'landmarks') {
+      const updated = isAdding
+        ? [...landmarksData, editItem]
+        : landmarksData.map(l => l.id === editItem.id ? editItem : l);
+      saveToStorage('aaranya_landmarks', updated, setLandmarksData);
     } else if (activeTab === 'gallery') {
       const updated = isAdding
         ? [...galleryData, editItem]
@@ -429,6 +444,26 @@ export const Admin = () => {
                     <div className="truncate">
                       <h4 className="font-playfair font-medium text-sm text-charcoal truncate">{item.title}</h4>
                       <span className="text-[10px] uppercase text-accent-dark tracking-wider block mt-0.5">{item.category}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 self-end sm:self-auto">
+                    <button onClick={() => handleEditClick(item)} className="p-2 text-primary hover:bg-primary/5 rounded-lg transition-colors cursor-pointer" title="Edit"><RiEditLine size={18} /></button>
+                    <button onClick={() => handleDeleteClick(item.id)} className="p-2 text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer" title="Delete"><RiDeleteBinLine size={18} /></button>
+                  </div>
+                </div>
+              ))}
+
+              {activeTab === 'landmarks' && landmarksData.map((item) => (
+                <div key={item.id} className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border border-primary border-opacity-5 rounded-xl hover:bg-bgLight/50 transition-colors gap-4">
+                  <div className="flex items-center gap-4 w-full sm:w-2/3">
+                    {item.image ? (
+                      <img src={item.image} alt={item.name} className="w-16 h-12 object-cover rounded-lg bg-primary-dark shrink-0" />
+                    ) : (
+                      <div className="w-16 h-12 bg-primary/5 rounded-lg shrink-0 flex items-center justify-center text-[10px]">No Pic</div>
+                    )}
+                    <div className="truncate">
+                      <h4 className="font-playfair font-medium text-sm text-charcoal truncate">{item.name}</h4>
+                      <span className="text-[10px] uppercase text-accent-dark tracking-wider block mt-0.5">{item.distance}</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 self-end sm:self-auto">
@@ -928,6 +963,95 @@ export const Admin = () => {
                         <div className="w-16 h-12 bg-primary/5 rounded-lg shrink-0 flex items-center justify-center text-[10px]">No Pic</div>
                       )}
                       <input type="text" value={editItem.image} onChange={(e) => setEditItem({ ...editItem, image: e.target.value })} className="p-3 border border-primary/10 bg-bgLight/50 focus:bg-white rounded-xl focus:border-secondary focus:outline-none text-xs font-inter flex-grow" placeholder="Image URL / Base64 Data" required />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Landmarks Form */}
+              {activeTab === 'landmarks' && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="flex flex-col gap-1.5 col-span-2">
+                    <label className="font-semibold text-charcoal/70 uppercase text-[9px] tracking-wide">Attraction Name</label>
+                    <input type="text" value={editItem.name} onChange={(e) => setEditItem({ ...editItem, name: e.target.value })} className="p-3 border border-primary/10 bg-bgLight/50 focus:bg-white rounded-xl focus:border-secondary focus:outline-none text-xs font-inter" required />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5 col-span-2">
+                    <label className="font-semibold text-charcoal/70 uppercase text-[9px] tracking-wide">Distance & Time</label>
+                    <input type="text" value={editItem.distance} placeholder="1 KM • 5 Mins Drive" onChange={(e) => setEditItem({ ...editItem, distance: e.target.value })} className="p-3 border border-primary/10 bg-bgLight/50 focus:bg-white rounded-xl focus:border-secondary focus:outline-none text-xs font-inter" required />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5 col-span-2">
+                    <label className="font-semibold text-charcoal/70 uppercase text-[9px] tracking-wide">Description</label>
+                    <textarea rows="4" value={editItem.description} onChange={(e) => setEditItem({ ...editItem, description: e.target.value })} className="p-3 border border-primary/10 bg-bgLight/50 focus:bg-white rounded-xl focus:border-secondary focus:outline-none text-xs font-inter resize-none" required />
+                  </div>
+
+                  {/* Main Image field */}
+                  <div className="flex flex-col gap-1.5 col-span-2">
+                    <label className="font-semibold text-charcoal/70 uppercase text-[9px] tracking-wide">Main Image</label>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleSingleImageUpload}
+                        className="hidden"
+                        id="landmarks-single-upload"
+                      />
+                      <label
+                        htmlFor="landmarks-single-upload"
+                        className="cursor-pointer bg-primary text-white text-[9px] uppercase tracking-luxury font-semibold py-2 px-4 rounded-lg hover:bg-secondary hover:text-charcoal transition-all duration-300 inline-flex items-center gap-1 shadow-sm"
+                      >
+                        <RiImageLine /> Upload Local Main Image
+                      </label>
+                    </div>
+                    {uploading && <div className="text-[10px] text-accent-dark animate-pulse">Encoding photo...</div>}
+                    <div className="flex items-center gap-3 mt-2 bg-white p-2.5 border border-primary/5 rounded-xl shadow-xs">
+                      {editItem.image ? (
+                        <img src={editItem.image} className="w-16 h-12 object-cover rounded-lg bg-primary-dark shrink-0" alt="Preview" />
+                      ) : (
+                        <div className="w-16 h-12 bg-primary/5 rounded-lg shrink-0 flex items-center justify-center text-[10px]">No Pic</div>
+                      )}
+                      <input type="text" value={editItem.image || ''} onChange={(e) => setEditItem({ ...editItem, image: e.target.value })} className="p-3 border border-primary/10 bg-bgLight/50 focus:bg-white rounded-xl focus:border-secondary focus:outline-none text-xs font-inter flex-grow" placeholder="Image URL / Base64 Data" required />
+                    </div>
+                  </div>
+
+                  {/* Gallery Images field */}
+                  <div className="col-span-2 flex flex-col gap-3 p-4 bg-bgLight/40 border border-primary/5 rounded-xl">
+                    <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                      <label className="font-semibold text-charcoal/70 uppercase text-[9px] tracking-wide">
+                        Additional Gallery Photos (For the popout lightbox slider)
+                      </label>
+                      <div className="flex items-center gap-3">
+                        <input
+                          type="file"
+                          multiple
+                          accept="image/*"
+                          onChange={handleImageUpload}
+                          className="hidden"
+                          id="landmarks-local-upload"
+                        />
+                        <label
+                          htmlFor="landmarks-local-upload"
+                          className="cursor-pointer bg-primary text-white text-[9px] uppercase tracking-luxury font-semibold py-2 px-4 rounded-lg hover:bg-secondary hover:text-charcoal transition-all duration-300 inline-flex items-center gap-1 shadow-sm"
+                        >
+                          <RiImageLine /> Upload Local (Max 5)
+                        </label>
+                        <button type="button" onClick={() => handleAddArrayItem('images')} className="text-primary hover:text-secondary flex items-center gap-1 cursor-pointer font-bold uppercase text-[9px]"><RiAddLine /> Add URL Link</button>
+                      </div>
+                    </div>
+                    {uploading && <div className="text-[10px] text-accent-dark animate-pulse">Encoding local photos...</div>}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {editItem.images && editItem.images.map((img, idx) => (
+                        <div key={idx} className="flex items-center gap-2 bg-white p-2 border border-primary/5 rounded-xl shadow-xs">
+                          {img ? (
+                            <img src={img} className="w-12 h-9 object-cover rounded-lg bg-primary-dark shrink-0" alt="Preview" />
+                          ) : (
+                            <div className="w-12 h-9 bg-primary/5 rounded-lg shrink-0 flex items-center justify-center text-[10px]">No Pic</div>
+                          )}
+                          <input type="text" value={img} onChange={(e) => handleArrayChange('images', idx, e.target.value)} className="p-2 border border-primary/10 bg-bgLight/30 rounded-lg text-[10px] font-inter flex-grow" placeholder="Image URL / Base64 Data" required />
+                          <button type="button" onClick={() => handleRemoveArrayItem('images', idx)} className="p-2 text-rose-600 hover:bg-rose-50 rounded-lg cursor-pointer"><RiCloseLine size={15} /></button>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>

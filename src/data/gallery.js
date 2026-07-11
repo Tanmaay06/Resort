@@ -25,7 +25,7 @@ const defaultGallery = [
   },
   {
     id: 5,
-    title: "Authentic Regional Cuisine at Luna & Sol",
+    title: "Authentic Regional Cuisine at Saarang",
     category: "dining",
     image: "https://images.unsplash.com/photo-1585938338392-50a59970d8ee?auto=format&fit=crop&w=800&q=80"
   },

@@ -24,7 +24,7 @@ const defaultOffers = [
     badge: "Wellness Program",
     inclusions: [
       "5 Nights in a Jungle Canopy Suite",
-      "Personalized organic meal plans at Luna & Sol",
+      "Personalized organic meal plans at Saarang",
       "Daily 90-minute customized spa treatments",
       "Private daily yoga and breathing (Pranayama) sessions",
       "A personal energy balancing sound bath therapy session"

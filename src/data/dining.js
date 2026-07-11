@@ -21,24 +21,24 @@ const defaultDining = [
     ]
   },
   {
-    id: "luna-sol",
-    name: "Luna & Sol",
-    tagline: "A botanical-led dining journey from sunrise breakfast to starlight dining.",
-    cuisine: "Organic Mediterranean-Indian Fusion",
-    hours: "Breakfast: 7:00 AM - 11:00 AM | Dinner: 6:30 PM - 10:30 PM",
-    description: "Located within the resort's lush forest gardens, Luna & Sol is our signature restaurant. It champions a true 'farm-to-table' ethos, incorporating herbs, microgreens, and vegetables grown right in the resort's private organic estate. The menu is an editorial fusion of Mediterranean clean flavours and subtle Indian spices, resulting in nourishing, vibrant dishes.",
-    image: "https://images.unsplash.com/photo-1585938338392-50a59970d8ee?auto=format&fit=crop&w=1200&q=80",
+    id: "saarang",
+    name: "Saarang",
+    tagline: "A majestic culinary journey showcasing the rich heritage of Indian royal cuisines.",
+    cuisine: "Royal Awadhi, Mughlai & Coastal Indian Fine Dining",
+    hours: "Lunch: 12:30 PM - 3:30 PM | Dinner: 7:00 PM - 11:30 PM",
+    description: "Located inside a royal court-inspired pavilion overlooking the valleys, Saarang offers a premium Indian dining experience. We celebrate the rich heritage of spices, slow-cooking techniques, and heirloom recipes passed down through generations. From hand-crafted Awadhi kebabs to rich coastal fish curries and slow-dum biryanis, each dish is a tribute to regional Indian gastronomy.",
+    image: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=1200&q=80",
     signatures: [
-      "Smoked Heirloom Tomato Tartare",
-      "Saffron Infused Hand-Cut Tagliolini",
-      "Slow-Roasted Duck Breast with Wild Honey Emulsion",
-      "Botanical Infused Mocktails & Organic Wines"
+      "Slow-Dum Awadhi Goat Biryani",
+      "Tandoori Lobster with Saffron Butter Emulsion",
+      "Saarang Signature Dal Makhani (slow-cooked for 24 hours)",
+      "Cardamom Infused Shahi Tukda with Rose Petal Rabri"
     ],
     features: [
-      "Indoor-outdoor garden greenhouse setting",
-      "100% organic locally-sourced ingredients",
-      "Chef's tasting menu with sommelier pairings",
-      "Private dining vaults"
+      "Royal court-inspired indoor-outdoor setting",
+      "Heritage slow-cooking & live charcoal spit",
+      "Interactive chef tables & spice-pairing vault",
+      "Handcrafted copper & gold tableware"
     ]
   },
   {
